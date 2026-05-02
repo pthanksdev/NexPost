@@ -6,14 +6,25 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#0a0a0f",
+        surface: "#111118",
+        border: "#1e1e2e",
+        primary: {
+          DEFAULT: "#7c3aed",
+          glow: "#a78bfa",
+        },
+        accent: "#06b6d4",
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+        mono: ["var(--font-mono)"],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
 };
 export default config;
