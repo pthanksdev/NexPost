@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NexPost - Modern Headless CMS
 
-## Getting Started
+A full-stack, AI-powered Headless CMS and Blog Platform built with Next.js 14, MongoDB, and NextAuth.
 
-First, run the development server:
+## 🚀 Features
 
+- **MDX Editor**: Split-pane markdown editor with live preview
+- **AI Assistant**: Built-in Anthropic Claude 3 for writing, SEO, and spam detection
+- **Multi-Platform Social Auto-Posting**: Twitter, LinkedIn, and Threads integration
+- **Scheduled Publishing**: Vercel Cron jobs for hands-off publishing
+- **Analytics Dashboard**: Insights on post views, comments, and subscribers
+- **Role-Based Auth**: Admin, Editor, and Writer roles via NextAuth
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Database**: MongoDB (Mongoose)
+- **Authentication**: NextAuth.js v5 (Google + Credentials)
+- **Styling**: Tailwind CSS + Radix UI Primitives
+- **State**: Zustand + React Hook Form
+- **AI**: Anthropic API
+
+## ⚙️ Setup Instructions
+
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Environment Variables
+Copy the `.env.local.example` to `.env.local` and fill in your keys:
+```bash
+cp .env.local.example .env.local
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run Development Server
+```bash
+npm run dev
+```
+Navigate to `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Setup Vercel Cron (Production)
+The scheduled publisher relies on Vercel Cron. Ensure `vercel.json` is configured:
+```json
+{
+  "crons": [
+    {
+      "path": "/api/cron/publish",
+      "schedule": "* * * * *"
+    }
+  ]
+}
+```
 
-## Learn More
+## 🔐 Environment Setup Guide
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **MONGODB_URI**: Your MongoDB connection string.
+- **AUTH_SECRET**: Generate via `npx auth secret`.
+- **TOKEN_ENCRYPTION_KEY**: A strong AES-256 key for encrypting social OAuth tokens.
+- **GOOGLE_CLIENT_ID/SECRET**: From Google Cloud Console.
+- **TWITTER/LINKEDIN/THREADS API KEYS**: From their respective developer portals.
+- **ANTHROPIC_API_KEY**: For Claude AI features.
+- **CLOUDINARY_***: For image uploads.
+# NexPost
