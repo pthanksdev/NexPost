@@ -87,7 +87,6 @@ const PostSchema = new Schema<IPost>({
   versions: { type: [PostVersionSchema], default: [] },
 }, { timestamps: true });
 
-PostSchema.index({ slug: 1 });
 PostSchema.index({ status: 1, scheduledAt: 1 });
 PostSchema.index({ authorId: 1, status: 1 });
 
