@@ -1,8 +1,16 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight, PenSquare, Share2, Search, Bot } from 'lucide-react';
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await auth();
+
+  if (session) {
+    redirect('/dashboard');
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}

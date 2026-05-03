@@ -1,7 +1,15 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
 import { AuthForm } from '@/components/auth/AuthForm';
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await auth();
+
+  if (session) {
+    redirect('/dashboard');
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8 animate-in fade-in zoom-in-95 duration-500">
